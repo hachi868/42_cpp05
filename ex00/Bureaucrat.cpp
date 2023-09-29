@@ -63,6 +63,16 @@ bool	Bureaucrat::judgeGrade(int grade)
 	return (true);
 }
 
+const char* Bureaucrat::GradeTooHighException::what() const throw();
+{
+	return ("GradeTooHighException");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw();
+{
+	return ("GradeTooLowException");
+}
+
 std::ostream &operator << (std::ostream &c_out, const Bureaucrat &bur)
 {
 	c_out << bur.getName() << ", bureaucrat grade " << bur.getGrade() << "." << std::endl;
