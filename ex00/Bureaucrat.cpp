@@ -55,14 +55,14 @@ int	Bureaucrat::getGrade() const
 void	Bureaucrat::upGrade(int ranks)
 {
 	this->_grade -= ranks;
-	if (this->_grade > this->GRADE_MIN)
+	if (this->_grade < this->GRADE_MAX)
 		throw GradeTooLowException();
 }
 
 void	Bureaucrat::downGrade(int ranks)
 {
 	this->_grade += ranks;
-	if (this->_grade < this->GRADE_MAX)
+	if (this->_grade > this->GRADE_MIN)
 		throw GradeTooHighException();
 }
 
