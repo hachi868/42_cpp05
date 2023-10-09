@@ -56,14 +56,14 @@ void	Bureaucrat::upGrade(int ranks)
 {
 	this->_grade -= ranks;
 	if (this->_grade < this->GRADE_MAX)
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 }
 
 void	Bureaucrat::downGrade(int ranks)
 {
 	this->_grade += ranks;
 	if (this->_grade > this->GRADE_MIN)
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -78,6 +78,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream &operator << (std::ostream &c_out, const Bureaucrat &bur)
 {
-	c_out << bur.getName() << ", bureaucrat grade " << bur.getGrade() << ".";
+	c_out << STATE << bur.getName() << ", bureaucrat grade " << bur.getGrade() << "." << RESET;
 	return (c_out);
 }
