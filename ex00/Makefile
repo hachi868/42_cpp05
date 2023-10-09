@@ -1,8 +1,7 @@
 PROG := ex00
 
 CXX := c++
-CXXFLAGS := -Wall
-#CXXFLAGS := -Wall -Wextra -Werror
+CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 SRCS =	main.cpp \
 		Bureaucrat.cpp
