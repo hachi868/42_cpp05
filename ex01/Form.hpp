@@ -1,6 +1,8 @@
 #ifndef __FORM_H__
 #define __FORM_H__
 
+#include "Bureaucrat.hpp"
+class Bureaucrat;
 
 class Form {
 public:
@@ -8,12 +10,20 @@ public:
 	Form(const std::string &name, int gradeToExecute, int gradeToSign);
 	Form(const Form &obj);
 	Form &operator = (const Form &obj);
-	virtual ~Form();
+	~Form();
+
+	//accessor
 	std::string	getName() const;
-	bool		getSigned() const;
+	bool		getIsSigned() const;
 	int			getGradeToExecute() const;
 	int			getGradeToSign() const;
+
+	//func
+	//「Bureaucrat」をパラメーターとして受け取り、
+	// その成績がgetGradeToSign以上ならフォームの_isSignedをtrueにする
 	void		beSigned(const Bureaucrat &bur);
+
+	//throw
 	class GradeTooHighException : public std::exception {
 	public:
 		virtual const char* what() const throw();
@@ -22,14 +32,14 @@ public:
 	public:
 		virtual const char* what() const throw();
 	};
+
 private:
 	std::string const	_name;
-	bool				_signed;
+	bool				_isSigned;
 	int const			_gradeToExecute;
 	int const			_gradeToSign;
 };
 
-std::ostream &operator << (std::ostream &os, const Form &form);
-
+std::ostream &operator << (std::ostream &c_out, const Form &form);
 
 #endif //__FORM_H__

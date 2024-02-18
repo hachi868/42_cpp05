@@ -1,6 +1,12 @@
 #ifndef __BUREAUCRAT_H__
 #define __BUREAUCRAT_H__
 
+#include "Form.hpp"
+class Form;
+
+# define GRADE_MAX	1
+# define GRADE_MIN	150
+
 class Bureaucrat {
 public:
 	Bureaucrat();
@@ -8,11 +14,17 @@ public:
 	Bureaucrat(const Bureaucrat &obj);
 	Bureaucrat &operator = (const Bureaucrat &obj);
 	~Bureaucrat();
+
+	//accessor
 	std::string	getName() const;
-	int	getGrade() const;
-	void	upGrade(int ranks);
-	void	downGrade(int ranks);
-	void	signForm(Form &form);
+	int			getGrade() const;
+	void		upGrade(int ranks);
+	void		downGrade(int ranks);
+
+	//func
+	void	signForm(const Bureaucrat &bur, Form &form);
+
+	//throw
 	class GradeTooHighException : public std::exception {
 	public:
 		virtual const char* what() const throw();
@@ -25,12 +37,11 @@ public:
 private:
 	std::string	_name;
 	int	_grade;
-	static const int GRADE_MAX = 1;
-	static const int GRADE_MIN = 150;
 };
 
-std::ostream &operator << (std::ostream &os, const Bureaucrat &bur);
+std::ostream &operator << (std::ostream &c_out, const Bureaucrat &bur);
 
+//標準例外クラス
 //namespace std {
 //	class exception {
 //	public:

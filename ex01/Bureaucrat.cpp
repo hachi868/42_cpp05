@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 const std::string RESET = "\033[0m";
 const std::string DEBUG = "\033[90m";
@@ -7,7 +8,7 @@ const std::string STATE = "\033[36m";
 const std::string ALERT = "\033[31m";
 const std::string MSG = "\033[34m";
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(this->GRADE_MIN)
+Bureaucrat::Bureaucrat() : _name("default"), _grade(GRADE_MIN)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
 }
@@ -15,9 +16,9 @@ Bureaucrat::Bureaucrat() : _name("default"), _grade(this->GRADE_MIN)
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
-	if (grade < this->GRADE_MAX)
+	if (grade < GRADE_MAX)
 		throw GradeTooHighException();
-	if (grade > this->GRADE_MIN)
+	if (grade > GRADE_MIN)
 		throw GradeTooLowException();
 }
 
@@ -42,6 +43,19 @@ Bureaucrat::~Bureaucrat()
 	std::cout << DEBUG << "[Bureaucrat] destructor called" << RESET << std::endl;
 }
 
+void	Bureaucrat::signForm(const Bureaucrat &bur, Form &form)
+{
+	try
+	{
+		form.beSigned(bur);
+		std::cout << STATE << bur.getName() << " signed " << form.getName() << "/" << form.getIsSigned() << RESET << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << ALERT << bur.getName() << " couldn’t sign " << form.getName()
+		<< " because " << e.what() << RESET << std::endl;
+	}
+}
 std::string	Bureaucrat::getName() const
 {
 	return (this->_name);
@@ -54,15 +68,19 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::upGrade(int ranks)
 {
+	if (ranks < 0 || ranks >= GRADE_MIN)
+		throw GradeTooHighException();
 	this->_grade -= ranks;
-	if (this->_grade < this->GRADE_MAX)
+	if (this->_grade < GRADE_MAX)
 		throw GradeTooHighException();
 }
 
 void	Bureaucrat::downGrade(int ranks)
 {
+	if (ranks < 0 || ranks >= GRADE_MIN)
+		throw GradeTooHighException();
 	this->_grade += ranks;
-	if (this->_grade > this->GRADE_MIN)
+	if (this->_grade > GRADE_MIN)
 		throw GradeTooLowException();
 }
 

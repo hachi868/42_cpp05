@@ -1,11 +1,11 @@
 PROG := ex01
 
 CXX := c++
-CXXFLAGS := -Wall
-#CXXFLAGS := -Wall -Wextra -Werror
+CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 SRCS =	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		Form.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
