@@ -7,7 +7,7 @@ const std::string STATE = "\033[36m";
 const std::string ALERT = "\033[31m";
 const std::string MSG = "\033[34m";
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(this->GRADE_MIN)
+Bureaucrat::Bureaucrat() : _name("default"), _grade(GRADE_MIN)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
 }
@@ -15,9 +15,9 @@ Bureaucrat::Bureaucrat() : _name("default"), _grade(this->GRADE_MIN)
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
-	if (grade < this->GRADE_MAX)
+	if (grade < GRADE_MAX)
 		throw GradeTooHighException();
-	if (grade > this->GRADE_MIN)
+	if (grade > GRADE_MIN)
 		throw GradeTooLowException();
 }
 
@@ -54,15 +54,19 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::upGrade(int ranks)
 {
+	if (ranks < 0 || ranks >= GRADE_MIN)
+		throw GradeTooHighException();
 	this->_grade -= ranks;
-	if (this->_grade < this->GRADE_MAX)
+	if (this->_grade < GRADE_MAX)
 		throw GradeTooHighException();
 }
 
 void	Bureaucrat::downGrade(int ranks)
 {
+	if (ranks < 0 || ranks >= GRADE_MIN)
+		throw GradeTooHighException();
 	this->_grade += ranks;
-	if (this->_grade > this->GRADE_MIN)
+	if (this->_grade > GRADE_MIN)
 		throw GradeTooLowException();
 }
 

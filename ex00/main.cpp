@@ -16,22 +16,24 @@ int main()
 {
 	{
 		std::cout << "[test0] constructor" << std::endl;
+		// tryで呼び出した関数内部の例外をcatchで捕捉
 		try {
 			Bureaucrat bur1;
-			Bureaucrat bur1a(bur1);
-			Bureaucrat bur2 = bur1a;
-			bur1 = bur2;
-			Bureaucrat bur3("bur3", 100);
-			Bureaucrat bur4("bur4", 4);
-			Bureaucrat* bur5 = new Bureaucrat("bur5", 1);
 			std::cout << STATE << bur1 << RESET << std::endl;
+			Bureaucrat bur1a(bur1);
 			std::cout << STATE << bur1a << RESET << std::endl;
+			Bureaucrat bur2 = bur1a;
 			std::cout << STATE << bur2 << RESET << std::endl;
+			bur1 = bur2;
+			std::cout << STATE << bur1 << RESET << std::endl;
+			Bureaucrat bur3("bur3", 100);
 			std::cout << STATE << bur3 << RESET << std::endl;
+			Bureaucrat bur4("bur4", 4);
 			std::cout << bur4 << std::endl;
+			Bureaucrat* bur5 = new Bureaucrat("bur5", 1);
 			std::cout << STATE << *bur5 << RESET << std::endl;
 			delete bur5;
-		} catch (std::exception& e) {
+		} catch (std::exception & e) {
 			std::cout << ALERT << e.what() << RESET << std::endl;
 		}
 	}
@@ -62,6 +64,30 @@ int main()
 		} catch (std::exception& e) {
 			std::cout << ALERT << e.what() << RESET << std::endl;
 		}
+		std::cout << "---" << std::endl;
+		//UPするランク数0はOK
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.upGrade(0);
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
+		std::cout << "---" << std::endl;
+		//UPするランク数 GRADE_MINはNG
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.upGrade(GRADE_MIN);
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
+		std::cout << "---" << std::endl;
+		//UPするランク数 < 0 はNG
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.upGrade(-1);
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
 	{
@@ -75,6 +101,30 @@ int main()
 				bur9.downGrade(1);
 				i++;
 			}
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
+		std::cout << "---" << std::endl;
+		//DOWNするランク数0はOK
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.downGrade(0);
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
+		std::cout << "---" << std::endl;
+		//DOWNするランク数 GRADE_MINはNG
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.downGrade(GRADE_MIN);
+		} catch (std::exception& e) {
+			std::cout << ALERT << e.what() << RESET << std::endl;
+		}
+		std::cout << "---" << std::endl;
+		//DOWNするランク数 < 0 はNG
+		try {
+			Bureaucrat bur8("bur8", 3);
+			bur8.downGrade(-1);
 		} catch (std::exception& e) {
 			std::cout << ALERT << e.what() << RESET << std::endl;
 		}
