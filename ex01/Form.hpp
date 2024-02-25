@@ -40,6 +40,6 @@ private:
 	int			gradeToSign_;
 };
 
-std::ostream &operator << (std::ostream &c_out, const Form &form);
+std::ostream &operator << (std::ostream &os, const Form &form);
 
 #endif //__FORM_H__
