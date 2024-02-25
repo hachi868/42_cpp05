@@ -8,12 +8,12 @@ const std::string STATE = "\033[36m";
 const std::string ALERT = "\033[31m";
 const std::string MSG = "\033[34m";
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(GRADE_MIN)
+Bureaucrat::Bureaucrat() : name_("default"), grade_(GRADE_MIN)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_(grade)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
 	if (grade < GRADE_MAX)
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name_(obj.name_), grade_(obj.grade_)
 {
 	std::cout << DEBUG << "[Bureaucrat] copy constructor called" << RESET << std::endl;
 }
@@ -32,8 +32,8 @@ Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 	std::cout << DEBUG << "[Bureaucrat] assignation operator called" << RESET << std::endl;
 	if (this != &obj)
 	{
-		this->_name = obj._name;
-		this->_grade = obj._grade;
+		this->name_ = obj.name_;
+		this->grade_ = obj.grade_;
 	}
 	return (*this);
 }
@@ -58,20 +58,20 @@ void	Bureaucrat::signForm(const Bureaucrat &bur, Form &form)
 }
 std::string	Bureaucrat::getName() const
 {
-	return (this->_name);
+	return (this->name_);
 }
 
 int	Bureaucrat::getGrade() const
 {
-	return (this->_grade);
+	return (this->grade_);
 }
 
 void	Bureaucrat::upGrade(int ranks)
 {
 	if (ranks < 0 || ranks >= GRADE_MIN)
 		throw GradeTooHighException();
-	this->_grade -= ranks;
-	if (this->_grade < GRADE_MAX)
+	this->grade_ -= ranks;
+	if (this->grade_ < GRADE_MAX)
 		throw GradeTooHighException();
 }
 
@@ -79,8 +79,8 @@ void	Bureaucrat::downGrade(int ranks)
 {
 	if (ranks < 0 || ranks >= GRADE_MIN)
 		throw GradeTooHighException();
-	this->_grade += ranks;
-	if (this->_grade > GRADE_MIN)
+	this->grade_ += ranks;
+	if (this->grade_ > GRADE_MIN)
 		throw GradeTooLowException();
 }
 

@@ -20,7 +20,7 @@ public:
 
 	//func
 	//「Bureaucrat」をパラメーターとして受け取り、
-	// その成績がgetGradeToSign以上ならフォームの_isSignedをtrueにする
+	// その成績がgetGradeToSign以上ならフォームのisSigned_をtrueにする
 	void		beSigned(const Bureaucrat &bur);
 
 	//throw
@@ -34,10 +34,10 @@ public:
 	};
 
 private:
-	std::string const	_name;
-	bool				_isSigned;
-	int const			_gradeToExecute;
-	int const			_gradeToSign;
+	std::string const	name_;
+	bool				isSigned_;
+	int const			gradeToExecute_;
+	int const			gradeToSign_;
 };
 
 std::ostream &operator << (std::ostream &c_out, const Form &form);
