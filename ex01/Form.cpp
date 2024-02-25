@@ -29,10 +29,10 @@ Form &Form::operator = (const Form &obj)
 	std::cout << DEBUG << "[Form] assignation operator called" << RESET << std::endl;
 	if (this != &obj)
 	{
-		//this->name_ = obj.name_;
+		this->name_ = obj.name_;
 		this->isSigned_ = obj.isSigned_;
-		//this->gradeToExecute_ = obj.gradeToExecute_;
-		//this->gradeToSign_ = obj.gradeToSign_;
+		this->gradeToExecute_ = obj.gradeToExecute_;
+		this->gradeToSign_ = obj.gradeToSign_;
 	}
 	return (*this);
 }
