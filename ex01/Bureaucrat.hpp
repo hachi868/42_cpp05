@@ -22,7 +22,7 @@ public:
 	void		downGrade(int ranks);
 
 	//func
-	void	signForm(const Bureaucrat &bur, Form &form);
+	void	signForm(Form &form);
 
 	//throw
 	class GradeTooHighException : public std::exception {

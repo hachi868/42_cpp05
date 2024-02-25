@@ -59,8 +59,11 @@ int			Form::getGradeToSign() const
 	return (this->gradeToSign_);
 }
 
+//wrapper functionのBureaucrat::signForm()のtry内で呼び出す
 void		Form::beSigned(const Bureaucrat &bur)
 {
+	if (this->isSigned_)
+		throw Form::FormAlreadySigned();
 	if (bur.getGrade() > this->gradeToSign_)
 		throw Form::GradeTooLowException();
 	this->isSigned_ = true;
@@ -75,10 +78,14 @@ const char* Form::GradeTooLowException::what() const throw()
 {
 	return ("GradeTooLowException");
 }
+const char* Form::FormAlreadySigned::what() const throw()
+{
+	return ("FormAlreadySigned");
+}
 
 //operator
 std::ostream &operator << (std::ostream &os, const Form &form)
 {
-	os << STATE << form.getName() << ", isSigned_ " << form.getIsSigned() << "." << form.getGradeToExecute() << "." << form.getGradeToExecute() << RESET;
+	os << STATE << "name_: " << form.getName() << " / isSigned_: " << form.getIsSigned() << " / gradeToExecute_: " << form.getGradeToExecute() << " / gradeToSign_: " << form.getGradeToSign() << RESET;
 	return (os);
 }

@@ -43,17 +43,18 @@ Bureaucrat::~Bureaucrat()
 	std::cout << DEBUG << "[Bureaucrat] destructor called" << RESET << std::endl;
 }
 
-void	Bureaucrat::signForm(const Bureaucrat &bur, Form &form)
+//wrapper function
+void	Bureaucrat::signForm(Form &form)
 {
 	try
 	{
-		form.beSigned(bur);
-		std::cout << STATE << bur.getName() << " signed " << form.getName() << "/" << form.getIsSigned() << RESET << std::endl;
+		form.beSigned(*this);
+		std::cout << STATE << this->name_ << " signed " << form.getName() << RESET << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << ALERT << bur.getName() << " couldn’t sign " << form.getName()
-		<< " because " << e.what() << RESET << std::endl;
+		std::cout << ALERT << this->name_ << " couldn’t sign " << form.getName()
+		<< " because " << e.what() << "." << RESET << std::endl;
 	}
 }
 std::string	Bureaucrat::getName() const

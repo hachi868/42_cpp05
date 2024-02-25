@@ -32,6 +32,10 @@ public:
 	public:
 		virtual const char* what() const throw();
 	};
+	class FormAlreadySigned : public std::exception {
+	public:
+		virtual const char* what() const throw();
+	};
 
 private:
 	std::string	name_;

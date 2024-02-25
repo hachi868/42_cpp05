@@ -33,13 +33,13 @@ int main()
 			Bureaucrat* bur5 = new Bureaucrat("bur5", 1);
 			std::cout << STATE << *bur5 << RESET << std::endl;
 			delete bur5;
-		} catch (std::exception & e) {
+		} catch (std::exception& e) {
 			std::cout << ALERT << e.what() << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
 	{
-		std::cout << "[test2] displayInfo" << std::endl;
+		std::cout << "[test1] displayInfo" << std::endl;
 		try {
 			Bureaucrat bur6("bur6", 100);
 			Bureaucrat bur7("bur7", 10);
@@ -51,7 +51,7 @@ int main()
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
 	{
-		std::cout << "[test3] grade up" << std::endl;
+		std::cout << "[test2] grade up" << std::endl;
 		try {
 			Bureaucrat bur8("bur8", 3);
 			int i = 0;
