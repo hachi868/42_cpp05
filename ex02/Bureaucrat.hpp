@@ -23,7 +23,7 @@ public:
 
 	//func
 	void	signForm(AForm &form);
-	void	executeForm(const AForm &form)
+	void	executeForm(const AForm &form);
 
 	//throw
 	class GradeTooHighException : public std::exception {

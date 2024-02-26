@@ -72,7 +72,7 @@ void	Bureaucrat::downGrade(int ranks)
 }
 
 //wrapper function
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
