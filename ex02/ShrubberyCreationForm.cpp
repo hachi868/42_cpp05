@@ -12,6 +12,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery_Creation", GRA
 {
 	std::cout << DEBUG << "[ShrubberyCreationForm] constructor called (default)" << RESET << std::endl;
 }
+
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
 	: AForm(name, GRADE_TO_EXE_SC, GRADE_TO_SIGN_SC, target)
 {
@@ -19,11 +20,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name, const int 
 	(void)gradeToSign;
 	std::cout << DEBUG << "[ShrubberyCreationForm] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 }
+
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj)
 	: AForm(obj.getName(), GRADE_TO_EXE_SC, GRADE_TO_SIGN_SC, obj.getTarget())
 {
 	std::cout << DEBUG << "[ShrubberyCreationForm] copy constructor called" << RESET << std::endl;
 }
+
 ShrubberyCreationForm &ShrubberyCreationForm::operator = (const ShrubberyCreationForm &obj)
 {
 	std::cout << DEBUG << "[ShrubberyCreationForm] assignation operator called" << RESET << std::endl;
@@ -31,11 +34,13 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator = (const ShrubberyCreatio
 		AForm::operator = (obj);
 	return (*this);
 }
+
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 		: AForm("Shrubbery_Creation", GRADE_TO_EXE_SC, GRADE_TO_SIGN_SC, target)
 {
 	std::cout << DEBUG << "[ShrubberyCreationForm] constructor called (target)" << RESET << std::endl;
 }
+
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	std::cout << DEBUG << "[ShrubberyCreationForm] destructor called" << RESET << std::endl;

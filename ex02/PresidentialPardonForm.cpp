@@ -11,6 +11,7 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential_Pardon", 
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (default)" << RESET << std::endl;
 }
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
 	: AForm(name, GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, target)
 {
@@ -18,11 +19,13 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &name, const in
 	(void)gradeToSign;
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 }
+
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj)
 	: AForm(obj.getName(), GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, obj.getTarget())
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] copy constructor called" << RESET << std::endl;
 }
+
 PresidentialPardonForm &PresidentialPardonForm::operator = (const PresidentialPardonForm &obj)
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] assignation operator called" << RESET << std::endl;
@@ -30,11 +33,13 @@ PresidentialPardonForm &PresidentialPardonForm::operator = (const PresidentialPa
 		AForm::operator = (obj);
 	return (*this);
 }
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
 		: AForm("Presidential_Pardon", GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, target)
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (target)" << RESET << std::endl;
 }
+
 PresidentialPardonForm::~PresidentialPardonForm()
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] destructor called" << RESET << std::endl;

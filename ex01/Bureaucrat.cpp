@@ -54,6 +54,7 @@ void	Bureaucrat::signForm(Form &form)
 		<< " because " << e.what() << "." << RESET << std::endl;
 	}
 }
+
 std::string	Bureaucrat::getName() const
 {
 	return (this->name_);

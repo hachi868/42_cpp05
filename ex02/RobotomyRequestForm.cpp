@@ -13,6 +13,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy_Request", GRADE_TO_
 {
 	std::cout << DEBUG << "[RobotomyRequestForm] constructor called (default)" << RESET << std::endl;
 }
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
 	: AForm(name, GRADE_TO_EXE_RR, GRADE_TO_SIGN_RR, target)
 {
@@ -20,11 +21,13 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &name, const int grad
 	(void)gradeToSign;
 	std::cout << DEBUG << "[RobotomyRequestForm] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 }
+
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj)
 	: AForm(obj.getName(), GRADE_TO_EXE_RR, GRADE_TO_SIGN_RR, obj.getTarget())
 {
 	std::cout << DEBUG << "[RobotomyRequestForm] copy constructor called" << RESET << std::endl;
 }
+
 RobotomyRequestForm &RobotomyRequestForm::operator = (const RobotomyRequestForm &obj)
 {
 	std::cout << DEBUG << "[RobotomyRequestForm] assignation operator called" << RESET << std::endl;
@@ -32,11 +35,13 @@ RobotomyRequestForm &RobotomyRequestForm::operator = (const RobotomyRequestForm 
 		AForm::operator = (obj);
 	return (*this);
 }
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 		: AForm("Robotomy_Request", GRADE_TO_EXE_RR, GRADE_TO_SIGN_RR, target)
 {
 	std::cout << DEBUG << "[RobotomyRequestForm] constructor called (target)" << RESET << std::endl;
 }
+
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << DEBUG << "[RobotomyRequestForm] destructor called" << RESET << std::endl;

@@ -46,14 +46,17 @@ std::string	Form::getName() const
 {
 	return (this->name_);
 }
+
 bool		Form::getIsSigned() const
 {
 	return (this->isSigned_);
 }
+
 int			Form::getGradeToExecute() const
 {
 	return (this->gradeToExecute_);
 }
+
 int			Form::getGradeToSign() const
 {
 	return (this->gradeToSign_);
@@ -74,10 +77,12 @@ const char* Form::GradeTooHighException::what() const throw()
 {
 	return ("grade is too high");
 }
+
 const char* Form::GradeTooLowException::what() const throw()
 {
 	return ("grade is too low");
 }
+
 const char* Form::FormAlreadySigned::what() const throw()
 {
 	return ("already signed");

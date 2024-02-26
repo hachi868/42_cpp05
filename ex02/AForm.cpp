@@ -46,18 +46,22 @@ std::string	AForm::getName() const
 {
 	return (this->name_);
 }
+
 bool		AForm::getIsSigned() const
 {
 	return (this->isSigned_);
 }
+
 int			AForm::getGradeToExecute() const
 {
 	return (this->gradeToExecute_);
 }
+
 int			AForm::getGradeToSign() const
 {
 	return (this->gradeToSign_);
 }
+
 std::string	AForm::getTarget() const
 {
 	return (this->target_);
@@ -87,14 +91,17 @@ const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("grade is too high");
 }
+
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("grade is too low");
 }
+
 const char* AForm::FormAlreadySigned::what() const throw()
 {
 	return ("already signed");
 }
+
 const char* AForm::FormNotSigned::what() const throw()
 {
 	return ("form is not signed");
