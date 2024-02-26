@@ -87,19 +87,19 @@ void	AForm::execute(const Bureaucrat &bur) const
 //throw
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return ("GradeTooHighException");
+	return ("grade is too high");
 }
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return ("GradeTooLowException");
+	return ("grade is too low");
 }
 const char* AForm::FormAlreadySigned::what() const throw()
 {
-	return ("FormAlreadySigned");
+	return ("already signed");
 }
 const char* AForm::FormNotSigned::what() const throw()
 {
-	return ("FormNotSigned");
+	return ("form is not signed");
 }
 
 //operator

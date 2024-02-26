@@ -65,5 +65,5 @@ void	ShrubberyCreationForm::executeConcreteAction() const
 
 const char* ShrubberyCreationForm::CouldntOpenFile::what() const throw()
 {
-	return ("CouldntOpenFile");
+	return ("Couldn’t open file");
 }
