@@ -45,11 +45,11 @@ protected:
 	virtual void	executeConcreteAction() const = 0;
 
 private:
-	std::string	name_;
-	bool		isSigned_;
-	int			gradeToExecute_;
-	int			gradeToSign_;
-	std::string	target_;
+	const std::string	name_;
+	bool				isSigned_;
+	const int			gradeToExecute_;
+	const int			gradeToSign_;
+	const std::string	target_;
 };
 
 std::ostream &operator << (std::ostream &os, const AForm &form);

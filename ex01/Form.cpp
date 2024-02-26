@@ -12,6 +12,7 @@ Form::Form() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN), g
 {
 	std::cout << DEBUG << "[Form] constructor called (default)" << RESET << std::endl;
 }
+
 Form::Form(const std::string &name, const int gradeToExecute, const int gradeToSign)
 	: name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign)
 {
@@ -21,22 +22,20 @@ Form::Form(const std::string &name, const int gradeToExecute, const int gradeToS
 	if (gradeToExecute > GRADE_MIN || gradeToSign > GRADE_MIN)
 		throw GradeTooLowException();
 }
+
 Form::Form(const Form &obj) : name_(obj.name_), isSigned_(obj.isSigned_), gradeToExecute_(obj.gradeToExecute_), gradeToSign_(obj.gradeToSign_)
 {
 	std::cout << DEBUG << "[Form] copy constructor called" << RESET << std::endl;
 }
+
 Form &Form::operator = (const Form &obj)
 {
 	std::cout << DEBUG << "[Form] assignation operator called" << RESET << std::endl;
 	if (this != &obj)
-	{
-		this->name_ = obj.name_;
 		this->isSigned_ = obj.isSigned_;
-		this->gradeToExecute_ = obj.gradeToExecute_;
-		this->gradeToSign_ = obj.gradeToSign_;
-	}
 	return (*this);
 }
+
 Form::~Form()
 {
 	std::cout << DEBUG << "[Form] destructor called" << RESET << std::endl;

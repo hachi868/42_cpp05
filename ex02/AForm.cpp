@@ -12,6 +12,7 @@ AForm::AForm() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN),
 {
 	std::cout << DEBUG << "[AForm] constructor called (default)" << RESET << std::endl;
 }
+
 AForm::AForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
 	: name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign), target_(target)
 {
@@ -21,23 +22,20 @@ AForm::AForm(const std::string &name, const int gradeToExecute, const int gradeT
 	if (gradeToExecute > GRADE_MIN || gradeToSign > GRADE_MIN)
 		throw GradeTooLowException();
 }
+
 AForm::AForm(const AForm &obj) : name_(obj.name_), isSigned_(obj.isSigned_), gradeToExecute_(obj.gradeToExecute_), gradeToSign_(obj.gradeToSign_), target_(obj.target_)
 {
 	std::cout << DEBUG << "[AForm] copy constructor called" << RESET << std::endl;
 }
+
 AForm &AForm::operator = (const AForm &obj)
 {
 	std::cout << DEBUG << "[AForm] assignation operator called" << RESET << std::endl;
 	if (this != &obj)
-	{
-		this->name_ = obj.name_;
 		this->isSigned_ = obj.isSigned_;
-		this->gradeToExecute_ = obj.gradeToExecute_;
-		this->gradeToSign_ = obj.gradeToSign_;
-		this->target_ = obj.target_;
-	}
 	return (*this);
 }
+
 AForm::~AForm()
 {
 	std::cout << DEBUG << "[AForm] destructor called" << RESET << std::endl;

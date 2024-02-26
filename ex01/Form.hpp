@@ -38,10 +38,10 @@ public:
 	};
 
 private:
-	std::string	name_;
-	bool		isSigned_;
-	int			gradeToExecute_;
-	int			gradeToSign_;
+	const std::string	name_;
+	bool				isSigned_;
+	const int			gradeToExecute_;
+	const int			gradeToSign_;
 };
 
 std::ostream &operator << (std::ostream &os, const Form &form);

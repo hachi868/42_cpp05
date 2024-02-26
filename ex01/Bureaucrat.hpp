@@ -35,8 +35,8 @@ public:
 	};
 
 private:
-	std::string	name_;
-	int	grade_;
+	const std::string	name_;
+	int					grade_;
 };
 
 std::ostream &operator << (std::ostream &os, const Bureaucrat &bur);

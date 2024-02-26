@@ -32,6 +32,8 @@ int main()
 			std::cout << form0e << std::endl;
 			Form* form0f = new Form("form0f", 1, 2);
 			std::cout << STATE << *form0f << RESET << std::endl;
+			form0f = &form0a;
+			std::cout << STATE << form0f << RESET << std::endl;
 			delete form0f;
 		} catch (std::exception& e) {
 			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
