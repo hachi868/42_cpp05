@@ -12,7 +12,8 @@ Form::Form() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN), g
 {
 	std::cout << DEBUG << "[Form] constructor called (default)" << RESET << std::endl;
 }
-Form::Form(const std::string &name, int gradeToExecute, int gradeToSign) : name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign)
+Form::Form(const std::string &name, const int gradeToExecute, const int gradeToSign)
+	: name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign)
 {
 	std::cout << DEBUG << "[Form] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 	if (gradeToExecute < GRADE_MAX || gradeToSign < GRADE_MAX)

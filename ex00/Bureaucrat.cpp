@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat() : name_("default"), grade_(GRADE_MIN)
 	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_(grade)
+Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
 	if (grade < GRADE_MAX)
