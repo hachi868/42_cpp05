@@ -13,7 +13,7 @@ Bureaucrat::Bureaucrat() : name_("default"), grade_(GRADE_MIN)
 	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_(grade)
+Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
 	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
 	if (grade < GRADE_MAX)
@@ -43,20 +43,6 @@ Bureaucrat::~Bureaucrat()
 	std::cout << DEBUG << "[Bureaucrat] destructor called" << RESET << std::endl;
 }
 
-//wrapper function
-void	Bureaucrat::signForm(Form &form)
-{
-	try
-	{
-		form.beSigned(*this);
-		std::cout << STATE << this->name_ << " signed " << form.getName() << RESET << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << ALERT << this->name_ << " couldn’t sign " << form.getName()
-		<< " because " << e.what() << "." << RESET << std::endl;
-	}
-}
 std::string	Bureaucrat::getName() const
 {
 	return (this->name_);
@@ -83,6 +69,35 @@ void	Bureaucrat::downGrade(int ranks)
 	this->grade_ += ranks;
 	if (this->grade_ > GRADE_MIN)
 		throw GradeTooLowException();
+}
+
+//wrapper function
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << STATE << this->name_ << " signed " << form.getName() << RESET << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << ALERT << this->name_ << " couldn’t sign " << form.getName()
+				  << " because " << e.what() << "." << RESET << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << STATE << this->name_ << " executed " << form.getName() << RESET << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << ALERT << this->name_ << " couldn’t execute " << form.getName()
+				  << " because " << e.what() << "." << RESET << std::endl;
+	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

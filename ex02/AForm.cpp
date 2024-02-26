@@ -8,37 +8,39 @@ const std::string STATE = "\033[36m";
 const std::string ALERT = "\033[31m";
 const std::string MSG = "\033[34m";
 
-AForm::AForm() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN), gradeToSign_(GRADE_MIN)
+AForm::AForm() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN), gradeToSign_(GRADE_MIN), target_("default")
 {
 	std::cout << DEBUG << "[AForm] constructor called (default)" << RESET << std::endl;
 }
-AForm::AForm(const std::string &name, int gradeToExecute, int gradeToSign) : name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign)
+AForm::AForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
+	: name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign), target_(target)
 {
-	std::cout << DEBUG << "[Form] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
+	std::cout << DEBUG << "[AForm] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 	if (gradeToExecute < GRADE_MAX || gradeToSign < GRADE_MAX)
 		throw GradeTooHighException();
 	if (gradeToExecute > GRADE_MIN || gradeToSign > GRADE_MIN)
 		throw GradeTooLowException();
 }
-AForm::AForm(const Form &obj) : name_(obj.name_), isSigned_(obj.isSigned_), gradeToExecute_(obj.gradeToExecute_), gradeToSign_(obj.gradeToSign_)
+AForm::AForm(const AForm &obj) : name_(obj.name_), isSigned_(obj.isSigned_), gradeToExecute_(obj.gradeToExecute_), gradeToSign_(obj.gradeToSign_), target_(obj.target_)
 {
-	std::cout << DEBUG << "[Form] copy constructor called" << RESET << std::endl;
+	std::cout << DEBUG << "[AForm] copy constructor called" << RESET << std::endl;
 }
-AForm &AForm::operator = (const Form &obj)
+AForm &AForm::operator = (const AForm &obj)
 {
-	std::cout << DEBUG << "[Form] assignation operator called" << RESET << std::endl;
+	std::cout << DEBUG << "[AForm] assignation operator called" << RESET << std::endl;
 	if (this != &obj)
 	{
 		this->name_ = obj.name_;
 		this->isSigned_ = obj.isSigned_;
 		this->gradeToExecute_ = obj.gradeToExecute_;
 		this->gradeToSign_ = obj.gradeToSign_;
+		this->target_ = obj.target_;
 	}
 	return (*this);
 }
 AForm::~AForm()
 {
-	std::cout << DEBUG << "[Form] destructor called" << RESET << std::endl;
+	std::cout << DEBUG << "[AForm] destructor called" << RESET << std::endl;
 }
 
 //accessor
@@ -58,6 +60,10 @@ int			AForm::getGradeToSign() const
 {
 	return (this->gradeToSign_);
 }
+std::string	AForm::getTarget() const
+{
+	return (this->target_);
+}
 
 //wrapper functionのBureaucrat::signForm()のtry内で呼び出す
 void		AForm::beSigned(const Bureaucrat &bur)
@@ -67,6 +73,15 @@ void		AForm::beSigned(const Bureaucrat &bur)
 	if (bur.getGrade() > this->gradeToSign_)
 		throw AForm::GradeTooLowException();
 	this->isSigned_ = true;
+}
+
+void	AForm::execute(const Bureaucrat &bur) const
+{
+	if (!this->isSigned_)
+		throw AForm::FormNotSigned();
+	if (bur.getGrade() > this->gradeToExecute_)
+		throw AForm::GradeTooLowException();
+	AForm::executeConcreteAction();
 }
 
 //throw
