@@ -7,19 +7,19 @@ const std::string STATE = "\033[36m";
 const std::string ALERT = "\033[31m";
 const std::string MSG = "\033[34m";
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential_Pardon", GRADE_TO_EXE, GRADE_TO_SIGN, "target")
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential_Pardon", GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, "target")
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (default)" << RESET << std::endl;
 }
 PresidentialPardonForm::PresidentialPardonForm(const std::string &name, const int gradeToExecute, const int gradeToSign, const std::string &target)
-	: AForm(name, GRADE_TO_EXE, GRADE_TO_SIGN, target)
+	: AForm(name, GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, target)
 {
 	(void)gradeToExecute;
 	(void)gradeToSign;
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
 }
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj)
-	: AForm(obj.getName(), GRADE_TO_EXE, GRADE_TO_SIGN, obj.getTarget())
+	: AForm(obj.getName(), GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, obj.getTarget())
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] copy constructor called" << RESET << std::endl;
 }
@@ -31,7 +31,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator = (const PresidentialPa
 	return (*this);
 }
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
-		: AForm("Presidential_Pardon", GRADE_TO_EXE, GRADE_TO_SIGN, target)
+		: AForm("Presidential_Pardon", GRADE_TO_EXE_PP, GRADE_TO_SIGN_PP, target)
 {
 	std::cout << DEBUG << "[PresidentialPardonForm] constructor called (target)" << RESET << std::endl;
 }
@@ -43,5 +43,5 @@ PresidentialPardonForm::~PresidentialPardonForm()
 //func
 void	PresidentialPardonForm::executeConcreteAction() const
 {
-	std::cout << STATE << PresidentialPardonForm::getTarget() << "has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
+	std::cout << STATE << PresidentialPardonForm::getTarget() << " has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
 }

@@ -3,8 +3,8 @@
 
 #include "Bureaucrat.hpp"
 
-# define GRADE_TO_EXE	25
-# define GRADE_TO_SIGN	5
+# define GRADE_TO_EXE_PP	5
+# define GRADE_TO_SIGN_PP	25
 
 class Bureaucrat;
 
