@@ -26,6 +26,29 @@ static AForm *constructPresidentialPardon(const std::string &targetForm)
 }
 
 
+Intern::Intern()
+{
+	std::cout << DEBUG << "[Intern] constructor called (default)" << RESET << std::endl;
+}
+
+Intern::Intern(const Intern &obj)
+{
+	(void)obj;
+	std::cout << DEBUG << "[Intern] copy constructor called" << RESET << std::endl;
+}
+
+Intern &Intern::operator = (const Intern &obj)
+{
+	(void)obj;
+	std::cout << DEBUG << "[Intern] assignation operator called" << RESET << std::endl;
+	return (*this);
+}
+
+Intern::~Intern()
+{
+	std::cout << DEBUG << "[Intern] destructor called" << RESET << std::endl;
+}
+
 AForm *Intern::makeForm(const std::string &nameForm, const std::string &targetForm)
 {
 	const char	*listFormNames[] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
