@@ -51,7 +51,7 @@ Intern::~Intern()
 
 AForm *Intern::makeForm(const std::string &nameForm, const std::string &targetForm)
 {
-	const char	*listFormNames[] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
+	const char	*listFormNames[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	FuncPointer listFormFunc[] = {constructShrubberyCreation, constructRobotomyRequest, constructPresidentialPardon};
 
 	int	i = 0;
@@ -64,6 +64,10 @@ AForm *Intern::makeForm(const std::string &nameForm, const std::string &targetFo
 		}
 		i++;
 	}
-	std::cout << ALERT << nameForm << " couldn’t creates because nameForm is missing from form list." << RESET << std::endl;
-	return (NULL);
+	throw FormNameMismatchException();
+}
+
+const char* Intern::FormNameMismatchException::what() const throw()
+{
+	return ("nameForm is missing from form list");
 }

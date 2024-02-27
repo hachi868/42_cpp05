@@ -14,6 +14,10 @@ public:
 	AForm *makeForm(const std::string &nameForm, const std::string &targetForm);
 
 	//throw
+	class FormNameMismatchException : public std::exception {
+	public:
+		virtual const char* what() const throw();
+	};
 };
 typedef AForm *(*FuncPointer)(const std::string &);
 #endif //__INTERN_H__
