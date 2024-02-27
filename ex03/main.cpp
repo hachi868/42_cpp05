@@ -1,8 +1,5 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
 const std::string RESET = "\033[0m";
