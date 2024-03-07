@@ -64,7 +64,7 @@ void	ShrubberyCreationForm::executeConcreteAction() const
 	}
 	catch (std::exception &e)
 	{
-		std::cout << ALERT << e.what() << "." << RESET << std::endl;
+		std::cerr << ALERT << e.what() << "." << RESET << std::endl;
 	}
 }
 

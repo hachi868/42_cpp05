@@ -34,7 +34,7 @@ int main()
 			std::cout << STATE << *bur5 << RESET << std::endl;
 			delete bur5;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -46,7 +46,7 @@ int main()
 			std::cout << STATE << bur6.getName() << " / " << bur6.getGrade() << RESET << std::endl;
 			std::cout << STATE << bur7.getName() << " / " << bur7.getGrade() << RESET << std::endl;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -62,7 +62,7 @@ int main()
 				i++;
 			}
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//UPするランク数0はOK
@@ -70,7 +70,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.upGrade(0);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//UPするランク数 GRADE_MINはNG
@@ -78,7 +78,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.upGrade(GRADE_MIN);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//UPするランク数 < 0 はNG
@@ -86,7 +86,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.upGrade(-1);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -102,7 +102,7 @@ int main()
 				i++;
 			}
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//DOWNするランク数0はOK
@@ -110,7 +110,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.downGrade(0);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//DOWNするランク数 GRADE_MINはNG
@@ -118,7 +118,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.downGrade(GRADE_MIN);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 		std::cout << "---" << std::endl;
 		//DOWNするランク数 < 0 はNG
@@ -126,7 +126,7 @@ int main()
 			Bureaucrat bur8("bur8", 3);
 			bur8.downGrade(-1);
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	return (0);

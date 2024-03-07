@@ -36,7 +36,7 @@ int main()
 			std::cout << STATE << form0f << RESET << std::endl;
 			delete form0f;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -48,7 +48,7 @@ int main()
 			std::cout << STATE << form1a.getName() << " / " << form1a.getIsSigned() << " / " << form1a.getGradeToExecute() << " / " << form1a.getGradeToSign() << RESET << std::endl;
 			std::cout << STATE << form1b.getName() << " / " << form1b.getIsSigned() << " / " << form1b.getGradeToExecute() << " / " << form1b.getGradeToSign() << RESET << std::endl;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;

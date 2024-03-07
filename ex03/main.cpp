@@ -24,7 +24,7 @@ int	main(void)
 			std::cout << *form0 << std::endl;
 			delete form0;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -37,7 +37,7 @@ int	main(void)
 			std::cout << *form1 << std::endl;
 			delete form1;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -50,7 +50,7 @@ int	main(void)
 			std::cout << *form2 << std::endl;
 			delete form2;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -63,7 +63,7 @@ int	main(void)
 			std::cout << *form3 << std::endl;
 			delete form3;
 		} catch (std::exception& e) {
-			std::cout << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
