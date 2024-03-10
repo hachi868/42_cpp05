@@ -1,5 +1,5 @@
-#ifndef __ROBOTOMY_REQUEST_FORM_H__
-#define __ROBOTOMY_REQUEST_FORM_H__
+#ifndef ROBOTOMY_REQUEST_FORM_HPP
+#define ROBOTOMY_REQUEST_FORM_HPP
 
 #include "Bureaucrat.hpp"
 
@@ -21,4 +21,4 @@ private:
 	virtual void	executeConcreteAction() const;
 };
 
-#endif //__ROBOTOMY_REQUEST_FORM_H__
+#endif //ROBOTOMY_REQUEST_FORM_HPP

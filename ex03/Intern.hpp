@@ -1,5 +1,5 @@
-#ifndef __INTERN_H__
-#define __INTERN_H__
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
 # include "AForm.hpp"
 
@@ -20,4 +20,4 @@ public:
 	};
 };
 typedef AForm *(*FuncPointer)(const std::string &);
-#endif //__INTERN_H__
+#endif //INTERN_HPP

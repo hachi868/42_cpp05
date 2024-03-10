@@ -1,5 +1,5 @@
-#ifndef __PRESIDENTIAL_PARDON_FORM_H__
-#define __PRESIDENTIAL_PARDON_FORM_H__
+#ifndef PRESIDENTIAL_PARDON_FORM_HPP
+#define PRESIDENTIAL_PARDON_FORM_HPP
 
 #include "Bureaucrat.hpp"
 
@@ -21,4 +21,4 @@ private:
 	virtual void	executeConcreteAction() const;
 };
 
-#endif //__PRESIDENTIAL_PARDON_FORM_H__
+#endif //PRESIDENTIAL_PARDON_FORM_HPP

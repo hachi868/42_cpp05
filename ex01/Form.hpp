@@ -1,5 +1,5 @@
-#ifndef __FORM_H__
-#define __FORM_H__
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include "Bureaucrat.hpp"
 class Bureaucrat;
@@ -46,4 +46,4 @@ private:
 
 std::ostream &operator << (std::ostream &os, const Form &form);
 
-#endif //__FORM_H__
+#endif //FORM_HPP

@@ -1,5 +1,5 @@
-#ifndef __SHRUBBERY_CREATION_FORM_H__
-#define __SHRUBBERY_CREATION_FORM_H__
+#ifndef SHRUBBERY_CREATION_FORM_HPP
+#define SHRUBBERY_CREATION_FORM_HPP
 
 #include "Bureaucrat.hpp"
 
@@ -26,4 +26,4 @@ private:
 	};
 };
 
-#endif //__SHRUBBERY_CREATION_FORM_H__
+#endif //SHRUBBERY_CREATION_FORM_HPP

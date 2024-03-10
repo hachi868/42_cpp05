@@ -1,5 +1,5 @@
-#ifndef __BUREAUCRAT_H__
-#define __BUREAUCRAT_H__
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include "AForm.hpp"
 class AForm;
@@ -59,4 +59,4 @@ std::ostream &operator << (std::ostream &os, const Bureaucrat &bur);
 // noexcept その関数が例外を投げないことを示す
 // what() 例外を説明するエラーメッセージのための関数
 
-#endif //__BUREAUCRAT_H__
+#endif //BUREAUCRAT_HPP
