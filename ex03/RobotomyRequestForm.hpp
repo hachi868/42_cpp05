@@ -1,12 +1,7 @@
 #ifndef ROBOTOMY_REQUEST_FORM_HPP
 #define ROBOTOMY_REQUEST_FORM_HPP
 
-#include "Bureaucrat.hpp"
-
-# define GRADE_TO_EXE_RR	45
-# define GRADE_TO_SIGN_RR	72
-
-class Bureaucrat;
+class AForm;
 
 class RobotomyRequestForm : public AForm {
 public:
@@ -16,6 +11,9 @@ public:
 	RobotomyRequestForm &operator = (const RobotomyRequestForm &obj);
 	RobotomyRequestForm(const std::string &target);
 	virtual ~RobotomyRequestForm();
+
+	const static int gradeToExeRR_;
+	const static int gradeToSignRR_;
 
 private:
 	virtual void	executeConcreteAction() const;

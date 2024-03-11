@@ -1,12 +1,7 @@
 #ifndef SHRUBBERY_CREATION_FORM_HPP
 #define SHRUBBERY_CREATION_FORM_HPP
 
-#include "Bureaucrat.hpp"
-
-# define GRADE_TO_EXE_SC	137
-# define GRADE_TO_SIGN_SC	145
-
-class Bureaucrat;
+class AForm;
 
 class ShrubberyCreationForm : public AForm {
 public:
@@ -16,6 +11,9 @@ public:
 	ShrubberyCreationForm &operator = (const ShrubberyCreationForm &obj);
 	ShrubberyCreationForm(const std::string &target);
 	virtual ~ShrubberyCreationForm();
+
+	const static int gradeToExeSC_;
+	const static int gradeToSignSC_;
 
 private:
 	virtual void	executeConcreteAction() const;

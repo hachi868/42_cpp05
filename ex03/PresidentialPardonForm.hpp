@@ -1,12 +1,7 @@
 #ifndef PRESIDENTIAL_PARDON_FORM_HPP
 #define PRESIDENTIAL_PARDON_FORM_HPP
 
-#include "Bureaucrat.hpp"
-
-# define GRADE_TO_EXE_PP	5
-# define GRADE_TO_SIGN_PP	25
-
-class Bureaucrat;
+class AForm;
 
 class PresidentialPardonForm : public AForm {
 public:
@@ -16,6 +11,9 @@ public:
 	PresidentialPardonForm &operator = (const PresidentialPardonForm &obj);
 	PresidentialPardonForm(const std::string &target);
 	virtual ~PresidentialPardonForm();
+
+	const static int gradeToExePP_;
+	const static int gradeToSignPP_;
 
 private:
 	virtual void	executeConcreteAction() const;

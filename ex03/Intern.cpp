@@ -1,14 +1,8 @@
-#include <iostream>
+#include "Bureaucrat.hpp"
 #include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
 
 static AForm *constructShrubberyCreation(const std::string &targetForm)
 {
@@ -28,25 +22,25 @@ static AForm *constructPresidentialPardon(const std::string &targetForm)
 
 Intern::Intern()
 {
-	std::cout << DEBUG << "[Intern] constructor called (default)" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Intern] constructor called (default)" << Bureaucrat::RESET << std::endl;
 }
 
 Intern::Intern(const Intern &obj)
 {
 	(void)obj;
-	std::cout << DEBUG << "[Intern] copy constructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Intern] copy constructor called" << Bureaucrat::RESET << std::endl;
 }
 
 Intern &Intern::operator = (const Intern &obj)
 {
 	(void)obj;
-	std::cout << DEBUG << "[Intern] assignation operator called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Intern] assignation operator called" << Bureaucrat::RESET << std::endl;
 	return (*this);
 }
 
 Intern::~Intern()
 {
-	std::cout << DEBUG << "[Intern] destructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Intern] destructor called" << Bureaucrat::RESET << std::endl;
 }
 
 AForm *Intern::makeForm(const std::string &nameForm, const std::string &targetForm)
@@ -59,7 +53,7 @@ AForm *Intern::makeForm(const std::string &nameForm, const std::string &targetFo
 	{
 		if (listFormNames[i] == nameForm)
 		{
-			std::cout << STATE << "Intern creates " << nameForm << "." << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << "Intern creates " << nameForm << "." << Bureaucrat::RESET << std::endl;
 			return (listFormFunc[i](targetForm));
 		}
 		i++;

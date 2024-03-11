@@ -1,12 +1,9 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
-
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
 
 __attribute__((destructor))
 static void destructor() {
@@ -24,7 +21,7 @@ int	main(void)
 			std::cout << *form0 << std::endl;
 			delete form0;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -37,7 +34,7 @@ int	main(void)
 			std::cout << *form1 << std::endl;
 			delete form1;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -50,7 +47,7 @@ int	main(void)
 			std::cout << *form2 << std::endl;
 			delete form2;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -63,7 +60,7 @@ int	main(void)
 			std::cout << *form3 << std::endl;
 			delete form3;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;

@@ -1,7 +1,7 @@
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
-# include "AForm.hpp"
+#include "AForm.hpp"
 
 class Intern {
 public:
@@ -12,6 +12,7 @@ public:
 
 	//func
 	AForm *makeForm(const std::string &nameForm, const std::string &targetForm);
+	typedef AForm *(*FuncPointer)(const std::string &);
 
 	//throw
 	class FormNameMismatchException : public std::exception {
@@ -19,5 +20,4 @@ public:
 		virtual const char* what() const throw();
 	};
 };
-typedef AForm *(*FuncPointer)(const std::string &);
 #endif //INTERN_HPP
