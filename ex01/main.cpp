@@ -1,11 +1,5 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
-
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
+#include "Form.hpp"
 
 __attribute__((destructor))
 static void destructor() {
@@ -16,27 +10,29 @@ int main()
 {
 	{
 		std::cout << "[test Form 0] constructor" << std::endl;
-		// tryで呼び出した関数内部の例外をcatchで捕捉
 		try {
 			Form form0a;
-			std::cout << STATE << form0a << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form0a << Bureaucrat::RESET << std::endl;
 			Form form0b(form0a);
-			std::cout << STATE << form0b << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form0b << Bureaucrat::RESET << std::endl;
 			Form form0c = form0a;
-			std::cout << STATE << form0c << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form0c << Bureaucrat::RESET << std::endl;
 			form0c = form0a;
-			std::cout << STATE << form0c << RESET << std::endl;
-			Form form0d("form0d", 160, 10);
-			std::cout << STATE << form0d << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form0c << Bureaucrat::RESET << std::endl;
 			Form form0e("form0e", 4, 10);
 			std::cout << form0e << std::endl;
 			Form* form0f = new Form("form0f", 1, 2);
-			std::cout << STATE << *form0f << RESET << std::endl;
-			form0f = &form0a;
-			std::cout << STATE << form0f << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << *form0f << Bureaucrat::RESET << std::endl;
 			delete form0f;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
+		}
+		std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
+		try {
+			Form form0d("form0d", 160, 10);
+			std::cout << form0d << std::endl;
+		} catch (std::exception& e) {
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
@@ -45,10 +41,10 @@ int main()
 		try {
 			Form form1a("form1a", 100, 10);
 			Form form1b("form1b", 10, 100);
-			std::cout << STATE << form1a.getName() << " / " << form1a.getIsSigned() << " / " << form1a.getGradeToExecute() << " / " << form1a.getGradeToSign() << RESET << std::endl;
-			std::cout << STATE << form1b.getName() << " / " << form1b.getIsSigned() << " / " << form1b.getGradeToExecute() << " / " << form1b.getGradeToSign() << RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form1a.getName() << " / " << form1a.getIsSigned() << " / " << form1a.getGradeToExecute() << " / " << form1a.getGradeToSign() << Bureaucrat::RESET << std::endl;
+			std::cout << Bureaucrat::STATE << form1b.getName() << " / " << form1b.getIsSigned() << " / " << form1b.getGradeToExecute() << " / " << form1b.getGradeToSign() << Bureaucrat::RESET << std::endl;
 		} catch (std::exception& e) {
-			std::cerr << ALERT << "[Exception caught] " << e.what() << "." << RESET << std::endl;
+			std::cerr << Bureaucrat::ALERT << "[Exception caught] " << e.what() << "." << Bureaucrat::RESET << std::endl;
 		}
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;

@@ -1,35 +1,37 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
+const int Bureaucrat::gradeMax_ = 1;
+const int Bureaucrat::gradeMin_ = 150;
 
-Bureaucrat::Bureaucrat() : name_("default"), grade_(GRADE_MIN)
+const std::string Bureaucrat::RESET = "\033[0m";
+const std::string Bureaucrat::DEBUG = "\033[90m";
+const std::string Bureaucrat::STATE = "\033[36m";
+const std::string Bureaucrat::ALERT = "\033[31m";
+const std::string Bureaucrat::MSG = "\033[34m";
+
+Bureaucrat::Bureaucrat() : name_("default"), grade_(Bureaucrat::gradeMin_)
 {
-	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] constructor called (default)" << Bureaucrat::RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
-	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
-	if (grade < GRADE_MAX)
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] constructor called (name, grade)" << Bureaucrat::RESET << std::endl;
+	if (grade < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
-	if (grade > GRADE_MIN)
+	if (grade > Bureaucrat::gradeMin_)
 		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name_(obj.name_), grade_(obj.grade_)
 {
-	std::cout << DEBUG << "[Bureaucrat] copy constructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] copy constructor called" << Bureaucrat::RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 {
-	std::cout << DEBUG << "[Bureaucrat] assignation operator called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] assignation operator called" << Bureaucrat::RESET << std::endl;
 	if (this != &obj)
 		this->grade_ = obj.getGrade();
 	return (*this);
@@ -37,7 +39,7 @@ Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << DEBUG << "[Bureaucrat] destructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] destructor called" << Bureaucrat::RESET << std::endl;
 }
 
 //wrapper function
@@ -46,12 +48,12 @@ void	Bureaucrat::signForm(Form &form)
 	try
 	{
 		form.beSigned(*this);
-		std::cout << STATE << this->name_ << " signed " << form.getName() << RESET << std::endl;
+		std::cout << Bureaucrat::STATE << this->name_ << " signed " << form.getName() << Bureaucrat::RESET << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << ALERT << this->name_ << " couldn’t sign " << form.getName()
-		<< " because " << e.what() << "." << RESET << std::endl;
+		std::cerr << Bureaucrat::ALERT << this->name_ << " couldn’t sign " << form.getName()
+		<< " because " << e.what() << "." << Bureaucrat::RESET << std::endl;
 	}
 }
 
@@ -67,20 +69,20 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::upGrade(int ranks)
 {
-	if (ranks < 0 || ranks >= GRADE_MIN)
+	if (ranks < 0)
+		throw GradeTooLowException();
+	if (ranks >= Bureaucrat::gradeMin_ || this->grade_ - ranks < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
 	this->grade_ -= ranks;
-	if (this->grade_ < GRADE_MAX)
-		throw GradeTooHighException();
 }
 
 void	Bureaucrat::downGrade(int ranks)
 {
-	if (ranks < 0 || ranks >= GRADE_MIN)
+	if (ranks < 0)
 		throw GradeTooHighException();
-	this->grade_ += ranks;
-	if (this->grade_ > GRADE_MIN)
+	if (ranks >= Bureaucrat::gradeMin_ || this->grade_ + ranks > Bureaucrat::gradeMin_)
 		throw GradeTooLowException();
+	this->grade_ += ranks;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -93,8 +95,8 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("grade is too low");
 }
 
-std::ostream &operator << (std::ostream &os, const Bureaucrat &bur)
+std::ostream &operator << (std::ostream &os, const Bureaucrat &obj)
 {
-	os << STATE << bur.getName() << ", bureaucrat grade " << bur.getGrade() << "." << RESET;
+	os << Bureaucrat::STATE << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << Bureaucrat::RESET;
 	return (os);
 }

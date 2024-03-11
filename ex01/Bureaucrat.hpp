@@ -1,11 +1,8 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include <iostream>
 class Form;
-
-# define GRADE_MAX	1
-# define GRADE_MIN	150
 
 class Bureaucrat {
 public:
@@ -14,6 +11,15 @@ public:
 	Bureaucrat(const Bureaucrat &obj);
 	Bureaucrat &operator = (const Bureaucrat &obj);
 	~Bureaucrat();
+
+	const static int gradeMax_;
+	const static int gradeMin_;
+
+	const static std::string RESET;
+	const static std::string DEBUG;
+	const static std::string STATE;
+	const static std::string ALERT;
+	const static std::string MSG;
 
 	//accessor
 	std::string	getName() const;

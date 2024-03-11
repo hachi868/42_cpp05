@@ -1,36 +1,29 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
-
-Form::Form() : name_("default"), isSigned_(false), gradeToExecute_(GRADE_MIN), gradeToSign_(GRADE_MIN)
+Form::Form() : name_("default"), isSigned_(false), gradeToExecute_(Bureaucrat::gradeMin_), gradeToSign_(Bureaucrat::gradeMin_)
 {
-	std::cout << DEBUG << "[Form] constructor called (default)" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Form] constructor called (default)" << Bureaucrat::RESET << std::endl;
 }
 
 Form::Form(const std::string &name, const int gradeToExecute, const int gradeToSign)
 	: name_(name), isSigned_(false), gradeToExecute_(gradeToExecute), gradeToSign_(gradeToSign)
 {
-	std::cout << DEBUG << "[Form] constructor called (name, gradeToExecute, gradeToSign)" << RESET << std::endl;
-	if (gradeToExecute < GRADE_MAX || gradeToSign < GRADE_MAX)
+	std::cout << Bureaucrat::DEBUG << "[Form] constructor called (name, gradeToExecute, gradeToSign)" << Bureaucrat::RESET << std::endl;
+	if (gradeToExecute < Bureaucrat::gradeMax_ || gradeToSign < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
-	if (gradeToExecute > GRADE_MIN || gradeToSign > GRADE_MIN)
+	if (gradeToExecute > Bureaucrat::gradeMin_ || gradeToSign > Bureaucrat::gradeMin_)
 		throw GradeTooLowException();
 }
 
 Form::Form(const Form &obj) : name_(obj.name_), isSigned_(obj.isSigned_), gradeToExecute_(obj.gradeToExecute_), gradeToSign_(obj.gradeToSign_)
 {
-	std::cout << DEBUG << "[Form] copy constructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Form] copy constructor called" << Bureaucrat::RESET << std::endl;
 }
 
 Form &Form::operator = (const Form &obj)
 {
-	std::cout << DEBUG << "[Form] assignation operator called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Form] assignation operator called" << Bureaucrat::RESET << std::endl;
 	if (this != &obj)
 		this->isSigned_ = obj.isSigned_;
 	return (*this);
@@ -38,7 +31,7 @@ Form &Form::operator = (const Form &obj)
 
 Form::~Form()
 {
-	std::cout << DEBUG << "[Form] destructor called" << RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Form] destructor called" << Bureaucrat::RESET << std::endl;
 }
 
 //accessor
@@ -91,6 +84,6 @@ const char* Form::FormAlreadySigned::what() const throw()
 //operator
 std::ostream &operator << (std::ostream &os, const Form &form)
 {
-	os << STATE << "name_: " << form.getName() << " / isSigned_: " << form.getIsSigned() << " / gradeToExecute_: " << form.getGradeToExecute() << " / gradeToSign_: " << form.getGradeToSign() << RESET;
+	os << Bureaucrat::STATE << "name_: " << form.getName() << " / isSigned_: " << form.getIsSigned() << " / gradeToExecute_: " << form.getGradeToExecute() << " / gradeToSign_: " << form.getGradeToSign() << Bureaucrat::RESET;
 	return (os);
 }
