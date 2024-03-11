@@ -1,34 +1,36 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
 
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
+const int Bureaucrat::gradeMax_ = 1;
+const int Bureaucrat::gradeMin_ = 150;
 
-Bureaucrat::Bureaucrat() : name_("default"), grade_(GRADE_MIN)
+const std::string Bureaucrat::RESET = "\033[0m";
+const std::string Bureaucrat::DEBUG = "\033[90m";
+const std::string Bureaucrat::STATE = "\033[36m";
+const std::string Bureaucrat::ALERT = "\033[31m";
+const std::string Bureaucrat::MSG = "\033[34m";
+
+Bureaucrat::Bureaucrat() : name_("default"), grade_(150)
 {
-	std::cout << DEBUG << "[Bureaucrat] constructor called (default)" << RESET << std::endl;
+	std::cout << this->DEBUG << "[Bureaucrat] constructor called (default)" << this->RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
-	std::cout << DEBUG << "[Bureaucrat] constructor called (name, grade)" << RESET << std::endl;
-	if (grade < GRADE_MAX)
+	std::cout << this->DEBUG << "[Bureaucrat] constructor called (name, grade)" << this->RESET << std::endl;
+	if (grade < this->gradeMax_)
 		throw GradeTooHighException();
-	if (grade > GRADE_MIN)
+	if (grade > this->gradeMin_)
 		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name_(obj.name_), grade_(obj.grade_)
 {
-	std::cout << DEBUG << "[Bureaucrat] copy constructor called" << RESET << std::endl;
+	std::cout << this->DEBUG << "[Bureaucrat] copy constructor called" << this->RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 {
-	std::cout << DEBUG << "[Bureaucrat] assignation operator called" << RESET << std::endl;
+	std::cout << this->DEBUG << "[Bureaucrat] assignation operator called" << this->RESET << std::endl;
 	if (this != &obj)
 		this->grade_ = obj.getGrade();
 	return (*this);
@@ -36,7 +38,7 @@ Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << DEBUG << "[Bureaucrat] destructor called" << RESET << std::endl;
+	std::cout << this->DEBUG << "[Bureaucrat] destructor called" << this->RESET << std::endl;
 }
 
 std::string	Bureaucrat::getName() const
@@ -49,22 +51,22 @@ int	Bureaucrat::getGrade() const
 	return (this->grade_);
 }
 
-void	Bureaucrat::upGrade(int ranks)
+void	Bureaucrat::upGrade(int ranks=1)
 {
-	if (ranks < 0 || ranks >= GRADE_MIN)
+	if (ranks < 0)
+		throw GradeTooLowException();
+	if (ranks >= this->gradeMin_ || this->grade_ - ranks < this->gradeMax_)
 		throw GradeTooHighException();
 	this->grade_ -= ranks;
-	if (this->grade_ < GRADE_MAX)
-		throw GradeTooHighException();
 }
 
-void	Bureaucrat::downGrade(int ranks)
+void	Bureaucrat::downGrade(int ranks=1)
 {
-	if (ranks < 0 || ranks >= GRADE_MIN)
+	if (ranks < 0)
 		throw GradeTooHighException();
-	this->grade_ += ranks;
-	if (this->grade_ > GRADE_MIN)
+	if (ranks >= this->gradeMin_ || this->grade_ + ranks > this->gradeMin_)
 		throw GradeTooLowException();
+	this->grade_ += ranks;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -77,8 +79,8 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("grade is too low");
 }
 
-std::ostream &operator << (std::ostream &os, const Bureaucrat &bur)
+std::ostream &operator << (std::ostream &os, const Bureaucrat &obj)
 {
-	os << STATE << bur.getName() << ", bureaucrat grade " << bur.getGrade() << "." << RESET;
+	os << obj.STATE << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << obj.RESET;
 	return (os);
 }
