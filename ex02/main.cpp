@@ -1,14 +1,8 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
-const std::string RESET = "\033[0m";
-const std::string DEBUG = "\033[90m";
-const std::string STATE = "\033[36m";
-const std::string ALERT = "\033[31m";
-const std::string MSG = "\033[34m";
 
 __attribute__((destructor))
 static void destructor() {
