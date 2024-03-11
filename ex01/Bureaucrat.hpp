@@ -45,7 +45,7 @@ private:
 	int					grade_;
 };
 
-std::ostream &operator << (std::ostream &os, const Bureaucrat &bur);
+std::ostream &operator << (std::ostream &os, const Bureaucrat &obj);
 
 //標準例外クラス
 //namespace std {
