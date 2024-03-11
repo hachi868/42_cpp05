@@ -9,28 +9,28 @@ const std::string Bureaucrat::STATE = "\033[36m";
 const std::string Bureaucrat::ALERT = "\033[31m";
 const std::string Bureaucrat::MSG = "\033[34m";
 
-Bureaucrat::Bureaucrat() : name_("default"), grade_(150)
+Bureaucrat::Bureaucrat() : name_("default"), grade_(Bureaucrat::gradeMin_)
 {
-	std::cout << this->DEBUG << "[Bureaucrat] constructor called (default)" << this->RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] constructor called (default)" << Bureaucrat::RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
-	std::cout << this->DEBUG << "[Bureaucrat] constructor called (name, grade)" << this->RESET << std::endl;
-	if (grade < this->gradeMax_)
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] constructor called (name, grade)" << Bureaucrat::RESET << std::endl;
+	if (grade < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
-	if (grade > this->gradeMin_)
+	if (grade > Bureaucrat::gradeMin_)
 		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name_(obj.name_), grade_(obj.grade_)
 {
-	std::cout << this->DEBUG << "[Bureaucrat] copy constructor called" << this->RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] copy constructor called" << Bureaucrat::RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 {
-	std::cout << this->DEBUG << "[Bureaucrat] assignation operator called" << this->RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] assignation operator called" << Bureaucrat::RESET << std::endl;
 	if (this != &obj)
 		this->grade_ = obj.getGrade();
 	return (*this);
@@ -38,7 +38,7 @@ Bureaucrat &Bureaucrat::operator = (const Bureaucrat &obj)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << this->DEBUG << "[Bureaucrat] destructor called" << this->RESET << std::endl;
+	std::cout << Bureaucrat::DEBUG << "[Bureaucrat] destructor called" << Bureaucrat::RESET << std::endl;
 }
 
 std::string	Bureaucrat::getName() const
@@ -55,7 +55,7 @@ void	Bureaucrat::upGrade(int ranks=1)
 {
 	if (ranks < 0)
 		throw GradeTooLowException();
-	if (ranks >= this->gradeMin_ || this->grade_ - ranks < this->gradeMax_)
+	if (ranks >= Bureaucrat::gradeMin_ || this->grade_ - ranks < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
 	this->grade_ -= ranks;
 }
@@ -64,7 +64,7 @@ void	Bureaucrat::downGrade(int ranks=1)
 {
 	if (ranks < 0)
 		throw GradeTooHighException();
-	if (ranks >= this->gradeMin_ || this->grade_ + ranks > this->gradeMin_)
+	if (ranks >= Bureaucrat::gradeMin_ || this->grade_ + ranks > Bureaucrat::gradeMin_)
 		throw GradeTooLowException();
 	this->grade_ += ranks;
 }
