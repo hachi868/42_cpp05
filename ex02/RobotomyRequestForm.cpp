@@ -1,5 +1,5 @@
 #include <cstdlib> // for rand(), srand()
-#include <ctime>   // for time()
+#include <sys/time.h>
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -49,10 +49,12 @@ RobotomyRequestForm::~RobotomyRequestForm()
 void	RobotomyRequestForm::executeConcreteAction() const
 {
 	//シード値を毎回変更する
-	srand(static_cast<unsigned int>(time(0)));
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	srand(static_cast<unsigned int>(tv.tv_usec));
 	std::cout << Bureaucrat::MSG << "(((((( wreeeeeeee wreeeeeeee wreeeeeeee ))))))" << Bureaucrat::RESET << std::endl;
 	if (rand() % 2)
 		std::cout << Bureaucrat::STATE << RobotomyRequestForm::getTarget() << " successfully underwent robotomy." << Bureaucrat::RESET << std::endl;
 	else
-		std::cout << Bureaucrat::STATE << "Robotomy of " << RobotomyRequestForm::getTarget() << " failed." << Bureaucrat::RESET << std::endl;
+		std::cout << Bureaucrat::ALERT << "Robotomy of " << RobotomyRequestForm::getTarget() << " failed." << Bureaucrat::RESET << std::endl;
 }
