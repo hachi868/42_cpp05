@@ -51,16 +51,17 @@ int	Bureaucrat::getGrade() const
 	return (this->grade_);
 }
 
-void	Bureaucrat::upGrade(int ranks=1)
+void	Bureaucrat::upGrade(int ranks)
 {
 	if (ranks < 0)
 		throw GradeTooLowException();
+	//rankがgradeMin_以下か確認の上、ランク変更試算
 	if (ranks >= Bureaucrat::gradeMin_ || this->grade_ - ranks < Bureaucrat::gradeMax_)
 		throw GradeTooHighException();
 	this->grade_ -= ranks;
 }
 
-void	Bureaucrat::downGrade(int ranks=1)
+void	Bureaucrat::downGrade(int ranks)
 {
 	if (ranks < 0)
 		throw GradeTooHighException();
@@ -81,6 +82,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream &operator << (std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.STATE << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << obj.RESET;
+	os << Bureaucrat::STATE << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << Bureaucrat::RESET;
 	return (os);
 }
